@@ -7,13 +7,13 @@ var jqxhr = $.getJSON( "https://query.yahooapis.com/v1/public/yql?q=select%20*%2
   console.log( "success" );
 })
   .done(function() {
-    alert( "second success" );
+    alert( data.querry.results.item.title );
   })
   .fail(function() {
     alert( "error" );
   })
   .always(function() {
-    alert( "complete" );
+    alert( data.querry.results.item.condition.temp );
   });
 </script>
 </head>
