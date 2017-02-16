@@ -106,17 +106,34 @@
 	  <div id="map" style="width:400px;height:400px;background:blue;margin-left:35%"></div>
   
 	  <script>
-	  function myMap() {
-	    var mapOptions = {
-	      center: new google.maps.LatLng(51.5, -0.12),
-	      zoom: 10,
-	      mapTypeId: google.maps.MapTypeId.HYBRID
-	    }
-	    var myCenter = new google.maps.LatLng(51.508742,-0.120850);
-	    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-	    var marker = new google.maps.Marker({position:myCenter});
-	    marker.setMap(map);
-	  }
+	  function myMap() {var locations = [
+      ['London', 51.508742,-0.120850],
+      ['Square', 51.51576000, -0.10751000]
+    ];
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: new google.maps.LatLng(51.5, -0.12),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
 	</script>
 	<script src="https://maps.googleapis.com/maps/api/js?key= AIzaSyCHs1TF6TMhkICROY6L6dWY-TqTSvvEk_8 &callback=myMap"></script>		 
 	<!-- *****************************************************************************************************************
