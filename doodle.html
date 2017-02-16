@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+  <title>Doodle</title>
+</head>
+<body>
+<canvas id="myCanvas" onmousemove="draw(event)" width="600px" height="400px"></canvas>
+<script>
+function draw(event){
+var canvas=document.getElementById("myCanvas");
+var context=canvas.getContext("2d");
+var posX=event.clientX;
+var posY=event.clientY;
+ctx.fillstyle="FF0000";
+ctx.fillrect(posX,posY,2,2);
+}
+</script>
+</body>
+</html>
